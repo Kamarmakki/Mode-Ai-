@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>{{ _('history') }}</h3>
+<table class="table table-striped">
+  <thead><tr><th>#</th><th>{{ _('keyword') }}</th><th>{{ _('lang') }}</th><th>{{ _('results') }}</th></tr></thead>
+  <tbody>
+  {% for r in records %}
+    <tr>
+      <td>{{ r.id }}</td>
+      <td>{{ r.keyword }}</td>
+      <td>{{ r.lang }}</td>
+      <td><a class="btn btn-sm btn-info" href="javascript:alert({{ r.data|tojson }})">عرض</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,11 @@
+body{
+    font-family:'Tahoma',sans-serif;
+    background:#f8f9fa;
+}
+.card{
+    border-radius:1rem;
+}
+.navbar-brand{
+    font-weight:bold;
+    letter-spacing:1px;
+}

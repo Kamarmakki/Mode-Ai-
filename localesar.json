@@ -1,0 +1,18 @@
+{
+  "lang":"العربية",
+  "login":"تسجيل الدخول",
+  "register":"إنشاء حساب",
+  "email":"البريد الإلكتروني",
+  "password":"كلمة المرور",
+  "keyword":"الكلمة المفتاحية",
+  "analyze":"حلّل",
+  "results":"النتائج",
+  "suggested_title":"العنوان المقترح",
+  "meta_description":"وصف الميتا",
+  "snippet":"المقطتف",
+  "outline":"العناوين الفرعية",
+  "nlp_keywords":"كلمات NLP",
+  "featured_snippets":"العبارات المتصدرة",
+  "logout":"خروج",
+  "history":"السجل"
+}

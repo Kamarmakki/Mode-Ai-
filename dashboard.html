@@ -1,0 +1,89 @@
+{# templates/dashboard.html #}
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+        <!-- عنوان الصفحة -->
+        <h2 class="mb-4">{{ _('analyze') }}</h2>
+
+        <!-- حقل إدخال الكلمة المفتاحية -->
+        <div class="input-group mb-3">
+            <input id="keyword"
+                   type="text"
+                   class="form-control form-control-lg"
+                   placeholder="{{ _('keyword') }}..."
+                   aria-label="{{ _('keyword') }}">
+            <button id="btnAnalyze"
+                    class="btn btn-primary btn-lg"
+                    type="button">
+                {{ _('analyze') }}
+            </button>
+        </div>
+
+        <!-- شريط تحميل بسيط (يُظهر أثناء الانتظار) -->
+        <div id="loader" class="text-center d-none my-3">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- صندوق النتائج (يُخفى/يُظهر بالـ JavaScript) -->
+        <div id="results" class="d-none">
+
+            <h4 class="mb-3">{{ _('results') }}</h4>
+
+            <!-- العنوان المقترح -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <strong>{{ _('suggested_title') }}:</strong>
+                    <span id="suggested_title" class="ms-1"></span>
+                </div>
+            </div>
+
+            <!-- وصف الميتا -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <strong>{{ _('meta_description') }}:</strong>
+                    <span id="meta_description" class="ms-1"></span>
+                </div>
+            </div>
+
+            <!-- Snippet -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <strong>{{ _('snippet') }}:</strong>
+                    <span id="snippet_text" class="ms-1"></span>
+                </div>
+            </div>
+
+            <!-- كلمات NLP -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <strong>{{ _('nlp_keywords') }}:</strong>
+                    <span id="nlp_keywords" class="ms-1"></span>
+                </div>
+            </div>
+
+            <!-- Featured Snippets -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <strong>{{ _('featured_snippets') }}:</strong>
+                    <span id="featured_snippets" class="ms-1"></span>
+                </div>
+            </div>
+
+            <!-- العناوين الفرعية (المخطط) -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <strong>{{ _('outline') }}:</strong>
+                    <ul id="outline" class="mt-2 mb-0"></ul>
+                </div>
+            </div>
+
+        </div><!-- /results -->
+
+    </div><!-- /col -->
+</div><!-- /row -->
+{% endblock %}

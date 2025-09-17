@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kamar AI Mode – أداة تحليل المنافسين</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{
+            --primary:#0052cc;      /* أزرق كهرماني */
+            --secondary:#ff9f1c;    /* برتقالي ذهبي */
+            --bg:#f8f9fa;
+            --card:#ffffff;
+        }
+        body{
+            font-family:'Tajawal',sans-serif;
+            background:var(--bg);
+            color:#333;
+        }
+        .navbar-brand{font-weight:700;}
+        .hero{
+            background:linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color:#fff;
+            padding:80px 0 60px;
+        }
+        .hero h1{font-size:2.5rem;}
+        .hero p{font-size:1.2rem;}
+        .card{
+            border:none;
+            border-radius:1rem;
+            background:var(--card);
+            box-shadow:0 4px 20px rgba(0,0,0,.06);
+        }
+        .btn-primary{
+            background:var(--primary);
+            border:none;
+            border-radius:.5rem;
+            padding:.55rem 1.75rem;
+            font-weight:600;
+        }
+        .btn-primary:hover{background:#0041a8;}
+        .spinner-border{width:1.3rem;height:1.3rem;border-width:.15em;}
+        .result-icon{color:var(--secondary);}
+        footer{background:#eef2f6;font-size:.85rem;}
+        @media(max-width:576px){
+            .hero h1{font-size:2rem;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- رأس الصفحة -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fa-solid fa-brain me-2"></i>Kamar AI Mode</a>
+        <div class="ms-auto">
+            <span class="badge bg-secondary">v1.0</span>
+        </div>
+    </div>
+</nav>
+
+<!-- قسم البطل -->
+<section class="hero text-center">
+    <div class="container">
+        <h1 class="mb-3">حلّل منافسيك بقوّة الذكاء الاصطناعي</h1>
+        <p class="mb-0">أدخل الكلمة المفتاحية واحصل على العناوين، الوصف، الروابط المتصدرة ومخطط المقال جاهزاً للنشر.</p>
+</section>
+
+<!-- النموذج -->
+<section class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card p-4">
+                <label for="keyword" class="form-label fw-bold">الكلمة المفتاحية</label>
+                <div class="input-group input-group-lg">
+                    <input type="text" id="keyword" class="form-control" placeholder="مثال: أفضل لابتوب 2025">
+                    <button id="btnAnalyze" class="btn btn-primary" type="button">
+                        <i class="fa-solid fa-magnifying-glass me-1"></i> حلّل
+                    </button>
+                </div>
+                <!-- شريط التحميل -->
+                <div id="loader" class="text-center mt-3 d-none">
+                    <div class="spinner-border text-primary"></div>
+                    <p class="mt-2 text-muted">جاري التحليل...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- صندوق النتائج -->
+<section id="results" class="container mb-5 d-none">
+    <h4 class="mb-4"><i class="fa-solid fa-chart-line result-icon me-2"></i>نتائج التحليل</h4>
+
+    <!-- العنوان المقترح -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fa-solid fa-heading me-2 result-icon"></i>العنوان المقترح</h5>
+            <p id="suggested_title" class="mb-0"></p>
+        </div>
+    </div>
+
+    <!-- وصف الميتا -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fa-solid fa-tag me-2 result-icon"></i>وصف الميتا</h5>
+            <p id="meta_description" class="mb-0"></p>
+        </div>
+    </div>
+
+    <!-- المقتطف المتصدّر -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fa-solid fa-quote-left me-2 result-icon"></i>المقتطف المتصدّر</h5>
+            <p id="snippet_text" class="mb-0"></p>
+        </div>
+    </div>
+
+    <!-- كلمات NLP -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fa-solid fa-key me-2 result-icon"></i>كلمات NLP</h5>
+            <p id="nlp_keywords" class="mb-0"></p>
+        </div>
+    </div>
+
+    <!-- الروابط المتصدرة -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fa-solid fa-link me-2 result-icon"></i>الروابط المتصدرة</h5>
+            <ul id="featured_snippets" class="mb-0"></ul>
+        </div>
+    </div>
+
+    <!-- مخطط المقال -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fa-solid fa-list-ol me-2 result-icon"></i>مخطط المقال (العناوين الفرعية)</h5>
+            <ol id="outline" class="mb-0"></ol>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-3 text-center text-muted">
+    <div class="container">
+        &copy; <span id="year"></span> Kamar AI Mode – تم التطوير بواسطة الذكاء الاصطناعي
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+    // تواريخ
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // عناصر الصفحة
+    const keywordInput   = document.getElementById('keyword');
+    const btnAnalyze     = document.getElementById('btnAnalyze');
+    const loader         = document.getElementById('loader');
+    const resultsBox     = document.getElementById('results');
+
+    // دوال مساعدة
+    const showLoader = ()=> { loader.classList.remove('d-none'); resultsBox.classList.add('d-none'); };
+    const hideLoader = ()=> { loader.classList.add('d-none'); };
+
+    // الحدث الرئيسي
+    btnAnalyze.addEventListener('click', async ()=>{
+        const kw = keywordInput.value.trim();
+        if(!kw){ alert('أدخل كلمة مفتاحية أولاً'); return; }
+
+        showLoader();
+
+        try{
+            const url = new URL('https://api.openwebninja.com/google-ai-mode/ai-mode');
+            url.searchParams.set('prompt', kw);
+            url.searchParams.set('hl', 'ar');
+            url.searchParams.set('gl', 'sa');
+            url.searchParams.set('x-api-key', 'ak_is7pbn7gl4g8mbaupwynpkfbr6lm9yfh8iurpdpuk4noou1');
+
+            const res  = await fetch(url);
+            const data = await res.json();
+
+            if(!res.ok) throw new Error(data.message || 'خطأ في الاستجابة');
+
+            // تعبئة الحقول
+            document.getElementById('suggested_title').textContent   = buildTitle(data.answer);
+            document.getElementById('meta_description').textContent= buildMeta(data.answer);
+            document.getElementById('snippet_text').textContent    = buildSnippet(data.answer);
+            document.getElementById('nlp_keywords').textContent    = buildKeywords(data.answer);
+            document.getElementById('featured_snippets').innerHTML = buildRefs(data.references);
+            document.getElementById('outline').innerHTML           = buildOutline(data.answer);
+
+            hideLoader();
+            resultsBox.classList.remove('d-none');
+            window.scrollTo({top: resultsBox.offsetTop - 20, behavior:'smooth'});
+
+        }catch(err){
+            hideLoader();
+            alert('فشل التحليل: ' + err.message);
+        }
+    });
+
+    // وظائف البناء البسيطة
+    function cleanFlair(text){
+        const stop = new Set(['تعرف','تعلم','اكتشف','احصل','لا تفوّت','سرّ','خدعة','مذهل','رائع','أفضل 10','best','discover','amazing','top 10','secret','trick']);
+        return text.split(' ').filter(w=>!stop.has(w.toLowerCase())).join(' ');
+    }
+    function buildTitle(txt){
+        const words = txt.replace(/[.,؟!]/g,'').split(/\s+/);
+        const freq = {};
+        words.forEach(w=>{ freq[w] = (freq[w]||0)+1; });
+        const sorted = Object.entries(freq).sort((a,b)=>b[1]-a[1]);
+        return sorted.slice(0,3).map(x=>x[0]).join(' ') + ' :اختيارك حسب الاختبار والتجربة';
+    }
+    function buildMeta(txt){
+        return cleanFlair(txt).substring(0,155) + (txt.length > 155 ? '...':'');
+    }
+    function buildSnippet(txt){
+        const sent = txt.split(/[.؟!]/)[0];
+        return cleanFlair(sent).substring(0,155) + (sent.length > 155 ? '...':'');
+    }
+    function buildKeywords(txt){
+        const bi = txt.match(/\b\w+\s\w+\b/g) || [];
+        const freq = {};
+        bi.forEach(w=>{ freq[w] = (freq[w]||0)+1; });
+        return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,12).map(x=>x[0]).join('، ');
+    }
+    function buildRefs(refs){
+        if(!refs || !refs.length) return '<li>لا توجد روابط</li>';
+        return [...new Set(refs.map(r=> new URL(r).hostname))]
+               .map(h=> `<li><a href="//${h}" target="_blank" rel="nofollow">${h}</a></li>`).join('');
+    }
+    function buildOutline(txt){
+        const sents = txt.split(/[.؟!]/).filter(s=>s.trim().length>20).slice(0,6);
+        return sents.map(s=>`<li>${s.trim().substring(0,70)}...</li>`).join('');
+    }
+</script>
+</body>
+</html>

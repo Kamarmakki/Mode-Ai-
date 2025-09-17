@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ _('analyze') }}</h2>
+<div class="mb-3">
+  <input id="keyword" class="form-control" placeholder="{{ _('keyword') }}">
+</div>
+<button id="btnAnalyze" class="btn btn-primary">{{ _('analyze') }}</button>
+
+<div id="results" class="mt-4 d-none">
+  <h4>{{ _('results') }}</h4>
+  <div class="card mb-2"><div class="card-body">
+    <strong>{{ _('suggested_title') }}:</strong> <span id="suggested_title"></span>
+  </div></div>
+  <div class="card mb-2"><div class="card-body">
+    <strong>{{ _('meta_description') }}:</strong> <span id="meta_description"></span>
+  </div></div>
+  <div class="card mb-2"><div class="card-body">
+    <strong>{{ _('snippet') }}:</strong> <span id="snippet_text"></span>
+  </div></div>
+  <div class="card mb-2"><div class="card-body">
+    <strong>{{ _('nlp_keywords') }}:</strong> <span id="nlp_keywords"></span>
+  </div></div>
+  <div class="card mb-2"><div class="card-body">
+    <strong>{{ _('featured_snippets') }}:</strong> <span id="featured_snippets"></span>
+  </div></div>
+  <div class="card mb-2"><div class="card-body">
+    <strong>{{ _('outline') }}:</strong> <ul id="outline"></ul>
+  </div></div>
+</div>
+{% endblock %}

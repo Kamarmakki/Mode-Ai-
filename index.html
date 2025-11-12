@@ -5,33 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World - Global News Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a1a1a;
-            --secondary-color: #d4af37;
+            --primary-color: #0a0a0a;
+            --secondary-color: #c9a961;
+            --accent-color: #e5b25d;
             --text-color: #333;
+            --light-text: #666;
             --light-bg: #f8f8f8;
             --white: #ffffff;
             --gray: #777;
             --light-gray: #f5f5f5;
+            --dark-overlay: rgba(0, 0, 0, 0.8);
+            --gold-gradient: linear-gradient(135deg, #c9a961, #e5b25d);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
             background-color: var(--white);
             color: var(--text-color);
             line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
         
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 15px;
         }
@@ -40,12 +46,13 @@
         header {
             background-color: var(--primary-color);
             color: var(--white);
-            padding: 15px 0;
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
         }
         
         .header-container {
@@ -60,15 +67,21 @@
         }
         
         .logo img {
-            height: 50px;
-            margin-right: 15px;
+            height: 60px;
+            margin-right: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
         }
         
         .logo h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             color: var(--white);
+            font-family: 'Playfair Display', serif;
         }
         
         .logo span {
@@ -81,111 +94,164 @@
         }
         
         nav ul li {
-            margin-left: 25px;
+            margin-left: 30px;
         }
         
         nav ul li a {
             color: var(--white);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
             font-size: 1rem;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
         }
         
         nav ul li a:hover {
             color: var(--secondary-color);
         }
         
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504711434969-e338861b72be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(var(--dark-overlay), var(--dark-overlay)), url('https://images.unsplash.com/photo-1504711434969-e338861b72be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
-            height: 70vh;
+            height: 90vh;
             display: flex;
             align-items: center;
             text-align: center;
             color: var(--white);
-            margin-top: 80px;
+            margin-top: 100px;
+            position: relative;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 2;
         }
         
         .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 4.5rem;
+            margin-bottom: 30px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.4rem;
+            margin-bottom: 40px;
             line-height: 1.8;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--secondary-color);
+            background: var(--gold-gradient);
             color: var(--primary-color);
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 15px 40px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
         }
         
         .btn:hover {
-            background-color: var(--white);
-            color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(201, 169, 97, 0.4);
         }
         
         /* About Section */
         .about {
-            padding: 80px 0;
+            padding: 120px 0;
             background-color: var(--light-bg);
+            position: relative;
+        }
+        
+        .about:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             color: var(--primary-color);
             position: relative;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
         }
         
         .section-title h2:after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
+            width: 100px;
+            height: 4px;
+            background: var(--gold-gradient);
         }
         
         .about-content {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
+            gap: 60px;
         }
         
         .about-text {
@@ -195,146 +261,281 @@
         }
         
         .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            line-height: 1.9;
             color: var(--text-color);
+            font-weight: 300;
+        }
+        
+        .about-text p:last-child {
+            margin-bottom: 0;
         }
         
         .about-image {
             flex: 1;
             min-width: 300px;
             text-align: center;
+            position: relative;
         }
         
         .about-image img {
             max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-image:before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 40px;
+            bottom: 40px;
+            border: 2px solid var(--secondary-color);
+            border-radius: 15px;
+            z-index: -1;
         }
         
         /* Topics Section */
         .topics {
-            padding: 80px 0;
+            padding: 120px 0;
+            background-color: var(--white);
         }
         
         .topics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 70px;
         }
         
         .topic-card {
             background-color: var(--white);
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .topic-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
         
         .topic-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+        
+        .topic-card:hover:before {
+            transform: scaleX(1);
         }
         
         .topic-card img {
             width: 100%;
-            height: 180px;
+            height: 220px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .topic-card:hover img {
+            transform: scale(1.08);
         }
         
         .topic-card-content {
-            padding: 20px;
+            padding: 30px;
         }
         
         .topic-card-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            transition: color 0.3s ease;
+        }
+        
+        .topic-card:hover .topic-card-content h3 {
+            color: var(--secondary-color);
         }
         
         .topic-card-content p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
+            color: var(--light-text);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
         
         .topic-card-content a {
             color: var(--secondary-color);
             text-decoration: none;
             font-weight: 600;
-            display: inline-block;
-            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
         
         .topic-card-content a:hover {
             color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .topic-card-content a i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .topic-card-content a:hover i {
+            transform: translateX(3px);
         }
         
         /* Sources Section */
         .sources {
-            padding: 80px 0;
+            padding: 120px 0;
             background-color: var(--light-bg);
+            position: relative;
+        }
+        
+        .sources:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
         }
         
         .sources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 70px;
         }
         
         .source-card {
             background-color: var(--white);
-            border-radius: 10px;
-            padding: 30px 20px;
+            border-radius: 15px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .source-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
         }
         
         .source-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+        
+        .source-card:hover:before {
+            opacity: 0.05;
         }
         
         .source-card i {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--secondary-color);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .source-card:hover i {
+            transform: scale(1.1);
+            color: var(--accent-color);
         }
         
         .source-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
             color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            position: relative;
+            z-index: 1;
         }
         
         .source-card a {
             color: var(--secondary-color);
             text-decoration: none;
             font-weight: 600;
-            display: inline-block;
-            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
         }
         
         .source-card a:hover {
             color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .source-card a i {
+            margin-left: 5px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .source-card a:hover i {
+            transform: translateX(3px);
         }
         
         /* Footer */
         footer {
             background-color: var(--primary-color);
             color: var(--white);
-            padding: 70px 0 30px;
+            padding: 100px 0 40px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gold-gradient);
         }
         
         .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            margin-bottom: 50px;
+            margin-bottom: 70px;
+            gap: 40px;
         }
         
         .footer-section {
@@ -345,10 +546,11 @@
         }
         
         .footer-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            font-family: 'Playfair Display', serif;
         }
         
         .footer-section h3:after {
@@ -356,14 +558,16 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary-color);
+            width: 60px;
+            height: 3px;
+            background: var(--gold-gradient);
         }
         
         .footer-section p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
         }
         
         .footer-section ul {
@@ -371,54 +575,95 @@
         }
         
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-section ul li a {
-            color: var(--white);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
         
         .footer-section ul li a:hover {
             color: var(--secondary-color);
+            transform: translateX(5px);
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .social-links a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--white);
             transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
         
         .social-links a:hover {
-            background-color: var(--secondary-color);
+            background: var(--gold-gradient);
             color: var(--primary-color);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(201, 169, 97, 0.3);
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero h2 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 3rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero h2 {
-                font-size: 2.8rem;
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
             }
             
             .about-content {
@@ -426,7 +671,11 @@
             }
             
             .about-text {
-                margin-bottom: 40px;
+                margin-bottom: 50px;
+            }
+            
+            .topics-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
         
@@ -437,38 +686,54 @@
             }
             
             nav ul {
-                margin-top: 15px;
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
             nav ul li {
-                margin: 0 10px;
+                margin: 0 12px;
+                margin-bottom: 10px;
             }
             
             .hero {
-                height: 60vh;
-                margin-top: 120px;
+                height: 70vh;
+                margin-top: 140px;
             }
             
             .hero h2 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+            
+            .about, .topics, .sources {
+                padding: 80px 0;
             }
         }
         
         @media (max-width: 576px) {
             .hero h2 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .hero p {
                 font-size: 1rem;
             }
             
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
             .topics-grid, .sources-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .footer-section {
+                flex: 100%;
             }
         }
     </style>
@@ -511,7 +776,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>World News is a premier global news portal dedicated to bringing you comprehensive coverage of events shaping our world. We strive to provide accurate, timely, and unbiased news from every corner of the globe, ensuring our readers stay informed about the issues that matter most.</p>
-                    <p>Our mission is to connect you with reliable information and diverse perspectives on international affairs, technology breakthroughs, business developments, and cultural trends. In partnership with <a href="https://faharas.net/" target="_blank" style="color: #d4af37; font-weight: bold;">Faharas</a>, we bring you curated content from trusted sources worldwide.</p>
+                    <p>Our mission is to connect you with reliable information and diverse perspectives on international affairs, technology breakthroughs, business developments, and cultural trends. In partnership with the leading <a href="https://faharas.net/" target="_blank" style="color: #c9a961; font-weight: bold;">digital news platform</a>, we bring you curated content from trusted sources worldwide.</p>
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Global News">
@@ -532,7 +797,7 @@
                     <div class="topic-card-content">
                         <h3>Amazon</h3>
                         <p>Latest news and updates about Amazon's business, services, and innovations.</p>
-                        <a href="https://faharas.net/topic/amazon/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/amazon/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
@@ -540,7 +805,7 @@
                     <div class="topic-card-content">
                         <h3>Android</h3>
                         <p>Everything about Android OS, devices, apps, and the latest developments.</p>
-                        <a href="https://faharas.net/topic/android/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/android/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
@@ -548,7 +813,7 @@
                     <div class="topic-card-content">
                         <h3>Battlefield</h3>
                         <p>Gaming news, updates, and reviews for the Battlefield franchise.</p>
-                        <a href="https://faharas.net/topic/battlefield/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/battlefield/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
@@ -556,7 +821,7 @@
                     <div class="topic-card-content">
                         <h3>Bing</h3>
                         <p>News about Microsoft's Bing search engine and its AI-powered features.</p>
-                        <a href="https://faharas.net/topic/bing/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/bing/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
@@ -564,15 +829,15 @@
                     <div class="topic-card-content">
                         <h3>ChatGPT</h3>
                         <p>Updates on OpenAI's ChatGPT and developments in conversational AI.</p>
-                        <a href="https://faharas.net/topic/chatgpt/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/chatgpt/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Claude">
+                    <img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Claude">
                     <div class="topic-card-content">
                         <h3>Claude</h3>
                         <p>Information about Anthropic's Claude AI assistant and its capabilities.</p>
-                        <a href="https://faharas.net/topic/claude/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/claude/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
@@ -580,7 +845,7 @@
                     <div class="topic-card-content">
                         <h3>Facebook</h3>
                         <p>News about Meta's Facebook platform, features, and corporate developments.</p>
-                        <a href="https://faharas.net/topic/facebook/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/facebook/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
@@ -588,31 +853,31 @@
                     <div class="topic-card-content">
                         <h3>Google</h3>
                         <p>Latest updates on Google's products, services, and corporate news.</p>
-                        <a href="https://faharas.net/topic/google/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/google/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
-                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Instagram">
+                    <img src="https://images.unsplash.com/photo-1611262586425-8a7cb2c4584c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Instagram">
                     <div class="topic-card-content">
                         <h3>Instagram</h3>
                         <p>News about Instagram's features, updates, and impact on social media.</p>
-                        <a href="https://faharas.net/topic/instagram/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/instagram/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
-                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="LinkedIn">
+                    <img src="https://images.unsplash.com/photo-1611944212129-2992c9901538?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="LinkedIn">
                     <div class="topic-card-content">
                         <h3>LinkedIn</h3>
                         <p>Updates on LinkedIn's professional networking platform and new features.</p>
-                        <a href="https://faharas.net/topic/linkedin/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/linkedin/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="topic-card">
-                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" alt="Microsoft">
+                    <img src="https://images.unsplash.com/photo-1623282933295-35c6026cb6a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Microsoft">
                     <div class="topic-card-content">
                         <h3>Microsoft</h3>
                         <p>News about Microsoft's products, services, and corporate developments.</p>
-                        <a href="https://faharas.net/topic/microsoft/" target="_blank">Read More →</a>
+                        <a href="https://faharas.net/topic/microsoft/" target="_blank">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -629,42 +894,42 @@
                 <div class="source-card">
                     <i class="fab fa-youtube"></i>
                     <h3>YouTube</h3>
-                    <a href="https://faharas.net/source/youtube/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/youtube/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="source-card">
                     <i class="fab fa-reddit"></i>
                     <h3>Reddit</h3>
-                    <a href="https://faharas.net/source/reddit/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/reddit/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="source-card">
                     <i class="fas fa-newspaper"></i>
                     <h3>Reuters</h3>
-                    <a href="https://faharas.net/source/reuters/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/reuters/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="source-card">
                     <i class="fas fa-chart-line"></i>
                     <h3>Yahoo Finance</h3>
-                    <a href="https://faharas.net/source/yahoo-finance/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/yahoo-finance/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="source-card">
                     <i class="fas fa-broadcast-tower"></i>
                     <h3>BBC News</h3>
-                    <a href="https://faharas.net/source/bbc-news/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/bbc-news/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="source-card">
                     <i class="fas fa-tv"></i>
                     <h3>CNN</h3>
-                    <a href="https://faharas.net/source/cnn/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/cnn/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="source-card">
                     <i class="fas fa-users"></i>
                     <h3>People</h3>
-                    <a href="https://faharas.net/source/people/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/people/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="source-card">
                     <i class="fas fa-laptop"></i>
                     <h3>TechRadar</h3>
-                    <a href="https://faharas.net/source/techradar/" target="_blank">Explore →</a>
+                    <a href="https://faharas.net/source/techradar/" target="_blank">Visit <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -706,18 +971,18 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Connect With Faharas</h3>
+                    <h3>Global Coverage</h3>
                     <ul>
-                        <li><a href="https://faharas.net/" target="_blank">Visit Faharas</a></li>
-                        <li><a href="#" target="_blank">Faharas on Facebook</a></li>
-                        <li><a href="#" target="_blank">Faharas on Twitter</a></li>
-                        <li><a href="#" target="_blank">Faharas on Instagram</a></li>
-                        <li><a href="#" target="_blank">Faharas on YouTube</a></li>
+                        <li><a href="https://faharas.net/world/" target="_blank">World News</a></li>
+                        <li><a href="#" target="_blank">Technology</a></li>
+                        <li><a href="#" target="_blank">Business</a></li>
+                        <li><a href="#" target="_blank">Politics</a></li>
+                        <li><a href="#" target="_blank">Culture</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 World News. All Rights Reserved. Designed with partnership from <a href="https://faharas.net/" target="_blank" style="color: #d4af37;">Faharas</a></p>
+                <p>&copy; 2023 World News. All Rights Reserved. Partnered with <a href="https://faharas.net/" target="_blank">leading digital news platform</a></p>
             </div>
         </div>
     </footer>

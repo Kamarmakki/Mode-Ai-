@@ -1,244 +1,725 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Kamar AI Mode – أداة تحليل المنافسين</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World - Global News Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root{
-            --primary:#0052cc;      /* أزرق كهرماني */
-            --secondary:#ff9f1c;    /* برتقالي ذهبي */
-            --bg:#f8f9fa;
-            --card:#ffffff;
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #d4af37;
+            --text-color: #333;
+            --light-bg: #f8f8f8;
+            --white: #ffffff;
+            --gray: #777;
+            --light-gray: #f5f5f5;
         }
-        body{
-            font-family:'Tajawal',sans-serif;
-            background:var(--bg);
-            color:#333;
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .navbar-brand{font-weight:700;}
-        .hero{
-            background:linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color:#fff;
-            padding:80px 0 60px;
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.6;
         }
-        .hero h1{font-size:2.5rem;}
-        .hero p{font-size:1.2rem;}
-        .card{
-            border:none;
-            border-radius:1rem;
-            background:var(--card);
-            box-shadow:0 4px 20px rgba(0,0,0,.06);
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
-        .btn-primary{
-            background:var(--primary);
-            border:none;
-            border-radius:.5rem;
-            padding:.55rem 1.75rem;
-            font-weight:600;
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .btn-primary:hover{background:#0041a8;}
-        .spinner-border{width:1.3rem;height:1.3rem;border-width:.15em;}
-        .result-icon{color:var(--secondary);}
-        footer{background:#eef2f6;font-size:.85rem;}
-        @media(max-width:576px){
-            .hero h1{font-size:2rem;}
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504711434969-e338861b72be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 0 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Topics Section */
+        .topics {
+            padding: 80px 0;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .topic-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .topic-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .topic-card-content {
+            padding: 20px;
+        }
+        
+        .topic-card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .topic-card-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .topic-card-content a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        
+        .topic-card-content a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Sources Section */
+        .sources {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .source-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .source-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .source-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .source-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .source-card a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        
+        .source-card a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-section p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text {
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                height: 60vh;
+                margin-top: 120px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .topics-grid, .sources-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-
-<!-- رأس الصفحة -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="#"><i class="fa-solid fa-brain me-2"></i>Kamar AI Mode</a>
-        <div class="ms-auto">
-            <span class="badge bg-secondary">v1.0</span>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://z-cdn-media.chatglm.cn/files/3495cbf7-d308-4ec9-85a8-c5884ec2cada_logo-512%20%281%29.png?auth_key=1862972515-39c17387c76e4715830f85335f617c46-0-5026b57383edf57b8ed78950dc84fb8b" alt="World News Logo">
+                <h1>World<span> News</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#topics">Topics</a></li>
+                    <li><a href="#sources">Sources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
-</nav>
+    </header>
 
-<!-- قسم البطل -->
-<section class="hero text-center">
-    <div class="container">
-        <h1 class="mb-3">حلّل منافسيك بقوّة الذكاء الاصطناعي</h1>
-        <p class="mb-0">أدخل الكلمة المفتاحية واحصل على العناوين، الوصف، الروابط المتصدرة ومخطط المقال جاهزاً للنشر.</p>
-</section>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Global News Portal</h2>
+            <p>Your trusted source for world news, technology updates, and global insights</p>
+            <a href="#about" class="btn">Discover More</a>
+        </div>
+    </section>
 
-<!-- النموذج -->
-<section class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card p-4">
-                <label for="keyword" class="form-label fw-bold">الكلمة المفتاحية</label>
-                <div class="input-group input-group-lg">
-                    <input type="text" id="keyword" class="form-control" placeholder="مثال: أفضل لابتوب 2025">
-                    <button id="btnAnalyze" class="btn btn-primary" type="button">
-                        <i class="fa-solid fa-magnifying-glass me-1"></i> حلّل
-                    </button>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About World News</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>World News is a premier global news portal dedicated to bringing you comprehensive coverage of events shaping our world. We strive to provide accurate, timely, and unbiased news from every corner of the globe, ensuring our readers stay informed about the issues that matter most.</p>
+                    <p>Our mission is to connect you with reliable information and diverse perspectives on international affairs, technology breakthroughs, business developments, and cultural trends. In partnership with <a href="https://faharas.net/" target="_blank" style="color: #d4af37; font-weight: bold;">Faharas</a>, we bring you curated content from trusted sources worldwide.</p>
                 </div>
-                <!-- شريط التحميل -->
-                <div id="loader" class="text-center mt-3 d-none">
-                    <div class="spinner-border text-primary"></div>
-                    <p class="mt-2 text-muted">جاري التحليل...</p>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Global News">
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- صندوق النتائج -->
-<section id="results" class="container mb-5 d-none">
-    <h4 class="mb-4"><i class="fa-solid fa-chart-line result-icon me-2"></i>نتائج التحليل</h4>
-
-    <!-- العنوان المقترح -->
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title"><i class="fa-solid fa-heading me-2 result-icon"></i>العنوان المقترح</h5>
-            <p id="suggested_title" class="mb-0"></p>
+    <!-- Topics Section -->
+    <section class="topics" id="topics">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Topics</h2>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" alt="Amazon">
+                    <div class="topic-card-content">
+                        <h3>Amazon</h3>
+                        <p>Latest news and updates about Amazon's business, services, and innovations.</p>
+                        <a href="https://faharas.net/topic/amazon/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1620986567048-9d17845e2324?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Android">
+                    <div class="topic-card-content">
+                        <h3>Android</h3>
+                        <p>Everything about Android OS, devices, apps, and the latest developments.</p>
+                        <a href="https://faharas.net/topic/android/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Battlefield">
+                    <div class="topic-card-content">
+                        <h3>Battlefield</h3>
+                        <p>Gaming news, updates, and reviews for the Battlefield franchise.</p>
+                        <a href="https://faharas.net/topic/battlefield/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" alt="Bing">
+                    <div class="topic-card-content">
+                        <h3>Bing</h3>
+                        <p>News about Microsoft's Bing search engine and its AI-powered features.</p>
+                        <a href="https://faharas.net/topic/bing/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="ChatGPT">
+                    <div class="topic-card-content">
+                        <h3>ChatGPT</h3>
+                        <p>Updates on OpenAI's ChatGPT and developments in conversational AI.</p>
+                        <a href="https://faharas.net/topic/chatgpt/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Claude">
+                    <div class="topic-card-content">
+                        <h3>Claude</h3>
+                        <p>Information about Anthropic's Claude AI assistant and its capabilities.</p>
+                        <a href="https://faharas.net/topic/claude/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Facebook">
+                    <div class="topic-card-content">
+                        <h3>Facebook</h3>
+                        <p>News about Meta's Facebook platform, features, and corporate developments.</p>
+                        <a href="https://faharas.net/topic/facebook/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" alt="Google">
+                    <div class="topic-card-content">
+                        <h3>Google</h3>
+                        <p>Latest updates on Google's products, services, and corporate news.</p>
+                        <a href="https://faharas.net/topic/google/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Instagram">
+                    <div class="topic-card-content">
+                        <h3>Instagram</h3>
+                        <p>News about Instagram's features, updates, and impact on social media.</p>
+                        <a href="https://faharas.net/topic/instagram/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="LinkedIn">
+                    <div class="topic-card-content">
+                        <h3>LinkedIn</h3>
+                        <p>Updates on LinkedIn's professional networking platform and new features.</p>
+                        <a href="https://faharas.net/topic/linkedin/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+                <div class="topic-card">
+                    <img src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1964&q=80" alt="Microsoft">
+                    <div class="topic-card-content">
+                        <h3>Microsoft</h3>
+                        <p>News about Microsoft's products, services, and corporate developments.</p>
+                        <a href="https://faharas.net/topic/microsoft/" target="_blank">Read More →</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- وصف الميتا -->
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title"><i class="fa-solid fa-tag me-2 result-icon"></i>وصف الميتا</h5>
-            <p id="meta_description" class="mb-0"></p>
+    <!-- Sources Section -->
+    <section class="sources" id="sources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Trusted Sources</h2>
+            </div>
+            <div class="sources-grid">
+                <div class="source-card">
+                    <i class="fab fa-youtube"></i>
+                    <h3>YouTube</h3>
+                    <a href="https://faharas.net/source/youtube/" target="_blank">Explore →</a>
+                </div>
+                <div class="source-card">
+                    <i class="fab fa-reddit"></i>
+                    <h3>Reddit</h3>
+                    <a href="https://faharas.net/source/reddit/" target="_blank">Explore →</a>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Reuters</h3>
+                    <a href="https://faharas.net/source/reuters/" target="_blank">Explore →</a>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Yahoo Finance</h3>
+                    <a href="https://faharas.net/source/yahoo-finance/" target="_blank">Explore →</a>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h3>BBC News</h3>
+                    <a href="https://faharas.net/source/bbc-news/" target="_blank">Explore →</a>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-tv"></i>
+                    <h3>CNN</h3>
+                    <a href="https://faharas.net/source/cnn/" target="_blank">Explore →</a>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-users"></i>
+                    <h3>People</h3>
+                    <a href="https://faharas.net/source/people/" target="_blank">Explore →</a>
+                </div>
+                <div class="source-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>TechRadar</h3>
+                    <a href="https://faharas.net/source/techradar/" target="_blank">Explore →</a>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- المقتطف المتصدّر -->
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title"><i class="fa-solid fa-quote-left me-2 result-icon"></i>المقتطف المتصدّر</h5>
-            <p id="snippet_text" class="mb-0"></p>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>World News</h3>
+                    <p>Your trusted source for global news and information from around the world.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#topics">Topics</a></li>
+                        <li><a href="#sources">Sources</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Popular Topics</h3>
+                    <ul>
+                        <li><a href="https://faharas.net/topic/google/" target="_blank">Google</a></li>
+                        <li><a href="https://faharas.net/topic/chatgpt/" target="_blank">ChatGPT</a></li>
+                        <li><a href="https://faharas.net/topic/android/" target="_blank">Android</a></li>
+                        <li><a href="https://faharas.net/topic/amazon/" target="_blank">Amazon</a></li>
+                        <li><a href="https://faharas.net/topic/microsoft/" target="_blank">Microsoft</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Faharas</h3>
+                    <ul>
+                        <li><a href="https://faharas.net/" target="_blank">Visit Faharas</a></li>
+                        <li><a href="#" target="_blank">Faharas on Facebook</a></li>
+                        <li><a href="#" target="_blank">Faharas on Twitter</a></li>
+                        <li><a href="#" target="_blank">Faharas on Instagram</a></li>
+                        <li><a href="#" target="_blank">Faharas on YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 World News. All Rights Reserved. Designed with partnership from <a href="https://faharas.net/" target="_blank" style="color: #d4af37;">Faharas</a></p>
+            </div>
         </div>
-    </div>
-
-    <!-- كلمات NLP -->
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title"><i class="fa-solid fa-key me-2 result-icon"></i>كلمات NLP</h5>
-            <p id="nlp_keywords" class="mb-0"></p>
-        </div>
-    </div>
-
-    <!-- الروابط المتصدرة -->
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title"><i class="fa-solid fa-link me-2 result-icon"></i>الروابط المتصدرة</h5>
-            <ul id="featured_snippets" class="mb-0"></ul>
-        </div>
-    </div>
-
-    <!-- مخطط المقال -->
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title"><i class="fa-solid fa-list-ol me-2 result-icon"></i>مخطط المقال (العناوين الفرعية)</h5>
-            <ol id="outline" class="mb-0"></ol>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-3 text-center text-muted">
-    <div class="container">
-        &copy; <span id="year"></span> Kamar AI Mode – تم التطوير بواسطة الذكاء الاصطناعي
-    </div>
-</footer>
-
-<!-- Scripts -->
-<script>
-    // تواريخ
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // عناصر الصفحة
-    const keywordInput   = document.getElementById('keyword');
-    const btnAnalyze     = document.getElementById('btnAnalyze');
-    const loader         = document.getElementById('loader');
-    const resultsBox     = document.getElementById('results');
-
-    // دوال مساعدة
-    const showLoader = ()=> { loader.classList.remove('d-none'); resultsBox.classList.add('d-none'); };
-    const hideLoader = ()=> { loader.classList.add('d-none'); };
-
-    // الحدث الرئيسي
-    btnAnalyze.addEventListener('click', async ()=>{
-        const kw = keywordInput.value.trim();
-        if(!kw){ alert('أدخل كلمة مفتاحية أولاً'); return; }
-
-        showLoader();
-
-        try{
-            const url = new URL('https://api.openwebninja.com/google-ai-mode/ai-mode');
-            url.searchParams.set('prompt', kw);
-            url.searchParams.set('hl', 'ar');
-            url.searchParams.set('gl', 'sa');
-            url.searchParams.set('x-api-key', 'ak_is7pbn7gl4g8mbaupwynpkfbr6lm9yfh8iurpdpuk4noou1');
-
-            const res  = await fetch(url);
-            const data = await res.json();
-
-            if(!res.ok) throw new Error(data.message || 'خطأ في الاستجابة');
-
-            // تعبئة الحقول
-            document.getElementById('suggested_title').textContent   = buildTitle(data.answer);
-            document.getElementById('meta_description').textContent= buildMeta(data.answer);
-            document.getElementById('snippet_text').textContent    = buildSnippet(data.answer);
-            document.getElementById('nlp_keywords').textContent    = buildKeywords(data.answer);
-            document.getElementById('featured_snippets').innerHTML = buildRefs(data.references);
-            document.getElementById('outline').innerHTML           = buildOutline(data.answer);
-
-            hideLoader();
-            resultsBox.classList.remove('d-none');
-            window.scrollTo({top: resultsBox.offsetTop - 20, behavior:'smooth'});
-
-        }catch(err){
-            hideLoader();
-            alert('فشل التحليل: ' + err.message);
-        }
-    });
-
-    // وظائف البناء البسيطة
-    function cleanFlair(text){
-        const stop = new Set(['تعرف','تعلم','اكتشف','احصل','لا تفوّت','سرّ','خدعة','مذهل','رائع','أفضل 10','best','discover','amazing','top 10','secret','trick']);
-        return text.split(' ').filter(w=>!stop.has(w.toLowerCase())).join(' ');
-    }
-    function buildTitle(txt){
-        const words = txt.replace(/[.,؟!]/g,'').split(/\s+/);
-        const freq = {};
-        words.forEach(w=>{ freq[w] = (freq[w]||0)+1; });
-        const sorted = Object.entries(freq).sort((a,b)=>b[1]-a[1]);
-        return sorted.slice(0,3).map(x=>x[0]).join(' ') + ' :اختيارك حسب الاختبار والتجربة';
-    }
-    function buildMeta(txt){
-        return cleanFlair(txt).substring(0,155) + (txt.length > 155 ? '...':'');
-    }
-    function buildSnippet(txt){
-        const sent = txt.split(/[.؟!]/)[0];
-        return cleanFlair(sent).substring(0,155) + (sent.length > 155 ? '...':'');
-    }
-    function buildKeywords(txt){
-        const bi = txt.match(/\b\w+\s\w+\b/g) || [];
-        const freq = {};
-        bi.forEach(w=>{ freq[w] = (freq[w]||0)+1; });
-        return Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,12).map(x=>x[0]).join('، ');
-    }
-    function buildRefs(refs){
-        if(!refs || !refs.length) return '<li>لا توجد روابط</li>';
-        return [...new Set(refs.map(r=> new URL(r).hostname))]
-               .map(h=> `<li><a href="//${h}" target="_blank" rel="nofollow">${h}</a></li>`).join('');
-    }
-    function buildOutline(txt){
-        const sents = txt.split(/[.؟!]/).filter(s=>s.trim().length>20).slice(0,6);
-        return sents.map(s=>`<li>${s.trim().substring(0,70)}...</li>`).join('');
-    }
-</script>
+    </footer>
 </body>
 </html>
